@@ -107,7 +107,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:baselineAligned="false"
-                android:text="BlowOut" />
+                android:text="Extinguish" />
 
         </LinearLayout>
 
