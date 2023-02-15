@@ -17,6 +17,9 @@ public class CakeView extends SurfaceView {
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
 
+    Paint checkersPaintr = new Paint();
+    Paint checkersPaintg = new Paint();
+
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -58,6 +61,10 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        checkersPaintr.setColor(Color.RED);
+        checkersPaintr.setStyle(Paint.Style.FILL);
+        checkersPaintg.setColor(Color.GREEN);
+        checkersPaintg.setStyle(Paint.Style.FILL);
         setBackgroundColor(Color.WHITE);  //better than black default
 
     }
@@ -99,7 +106,12 @@ public class CakeView extends SurfaceView {
         }
 
     }
-
+    public void drawCheckers(Canvas canvas) {
+        canvas.drawRect(cake1.CheckersX,cake1.CheckersY, cake1.CheckersX+25, cake1.CheckersY+25, checkersPaintg);
+        canvas.drawRect(cake1.CheckersX+25,cake1.CheckersY, cake1.CheckersX+50, cake1.CheckersY+25, checkersPaintr);
+        canvas.drawRect(cake1.CheckersX,cake1.CheckersY+25, cake1.CheckersX + 25, cake1.CheckersY+50, checkersPaintr);
+        canvas.drawRect(cake1.CheckersX+25,cake1.CheckersY+25, cake1.CheckersX+50, cake1.CheckersY+50, checkersPaintg);
+    }
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
@@ -137,5 +149,6 @@ public class CakeView extends SurfaceView {
                  drawCandle(canvas, cakeLeft + (cakeWidth / (cake1.candlesOnCake + 1))*i - (candleWidth/i), cakeTop);
 
         }//onDraw
+        drawCheckers(canvas);
     }
 }
