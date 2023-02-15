@@ -35,7 +35,6 @@ public class CakeView extends SurfaceView {
     public static final float innerFlameRadius = 15.0f;
 
 
-
     /**
      * ctor must be overridden here as per standard Java inheritance practice.  We need it
      * anyway to initialize the member variables
@@ -45,7 +44,7 @@ public class CakeView extends SurfaceView {
 
         //This is essential or your onDraw method won't get called
         setWillNotDraw(false);
-
+        cake1 = new CakeModel();
         //Setup our palette
         cakePaint.setColor(0xFFC755B5);  //violet-red
         cakePaint.setStyle(Paint.Style.FILL);
@@ -59,10 +58,16 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
-
         setBackgroundColor(Color.WHITE);  //better than black default
 
     }
+
+    public CakeModel getCakeView() {
+        return cake1;
+    }
+
+    private CakeModel cake1;
+
 
     /**
      * draws a candle at a specified position.  Important:  the left, bottom coordinates specify
@@ -72,18 +77,26 @@ public class CakeView extends SurfaceView {
         canvas.drawRect(left, bottom - candleHeight, left + candleWidth, bottom, candlePaint);
 
         //draw the outer flame
-        float flameCenterX = left + candleWidth/2;
-        float flameCenterY = bottom - wickHeight - candleHeight - outerFlameRadius/3;
-        canvas.drawCircle(flameCenterX, flameCenterY, outerFlameRadius, outerFlamePaint);
 
-        //draw the inner flame
-        flameCenterY += outerFlameRadius/3;
-        canvas.drawCircle(flameCenterX, flameCenterY, innerFlameRadius, innerFlamePaint);
+        if (cake1.Candlelit == true) {
+            float flameCenterX = left + candleWidth / 2;
 
-        //draw the wick
-        float wickLeft = left + candleWidth/2 - wickWidth/2;
-        float wickTop = bottom - wickHeight - candleHeight;
-        canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
+            float flameCenterY = bottom - wickHeight - candleHeight - outerFlameRadius / 3;
+            canvas.drawCircle(flameCenterX, flameCenterY, outerFlameRadius, outerFlamePaint);
+
+            //draw the inner flame
+            flameCenterY += outerFlameRadius / 3;
+            canvas.drawCircle(flameCenterX, flameCenterY, innerFlameRadius, innerFlamePaint);
+
+            //draw the wick
+            float wickLeft = left + candleWidth / 2 - wickWidth / 2;
+            float wickTop = bottom - wickHeight - candleHeight;
+            canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
+        } else {
+            float wickLeft = left + candleWidth / 2 - wickWidth / 2;
+            float wickTop = bottom - wickHeight - candleHeight;
+            canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
+        }
 
     }
 
@@ -91,12 +104,11 @@ public class CakeView extends SurfaceView {
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
      * many subtle differences.  Show care and read the documentation.
-     *
+     * <p>
      * This method will draw a birthday cake
      */
     @Override
-    public void onDraw(Canvas canvas)
-    {
+    public void onDraw(Canvas canvas) {
         //top and bottom are used to keep a running tally as we progress down the cake layers
         float top = cakeTop;
         float bottom = cakeTop + frostHeight;
@@ -120,9 +132,10 @@ public class CakeView extends SurfaceView {
         canvas.drawRect(cakeLeft, top, cakeLeft + cakeWidth, bottom, cakePaint);
 
         //Now a candle in the center
-        drawCandle(canvas, cakeLeft + cakeWidth/3 , cakeTop);
-        drawCandle(canvas, cakeLeft + cakeWidth/3 + cakeWidth/3, cakeTop );
-    }//onDraw
+        for(int i = 1; i <= cake1.candlesOnCake;i++){
 
-}//class CakeView
+                 drawCandle(canvas, cakeLeft + (cakeWidth / (cake1.candlesOnCake + 1))*i - (candleWidth/i), cakeTop);
 
+        }//onDraw
+    }
+}
