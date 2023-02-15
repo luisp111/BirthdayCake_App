@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+
         android:orientation="horizontal">
 
         <!--        CakeView is a custom SurfaceView that is defined in the app's source code -->
@@ -27,7 +28,8 @@
             android:id="@+id/cakeview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             />
+            android:background="#FFFFFF"
+            android:backgroundTint="#FFFFFF" />
 
     </LinearLayout>
 
