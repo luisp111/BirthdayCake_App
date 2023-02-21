@@ -151,6 +151,6 @@ public class CakeView extends SurfaceView {
         String xString = Float.toString(x);
         String yString = Float.toString(y);
         String finalText = ("("+ xString + "," + yString+")");
-        canvas.drawText(finalText, 1100, 1100, textPaint );
+        canvas.drawText(finalText, 1090, 1100, textPaint );
     }
 }
