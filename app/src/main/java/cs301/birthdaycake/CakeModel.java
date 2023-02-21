@@ -5,7 +5,8 @@ public class CakeModel {
     public int candlesOnCake = 2;
     public boolean CakeFrosting = true;
     public boolean hasCandle = true;
-
+    public float x;
+    public float y;
     public void setLit(boolean lit) {
         this.Candlelit = lit;
     }

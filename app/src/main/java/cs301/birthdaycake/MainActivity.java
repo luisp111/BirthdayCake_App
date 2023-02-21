@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         canSwitch.setOnCheckedChangeListener(cakeController);
         SeekBar mySeekBar = (SeekBar) findViewById(R.id.seekBar4); //
         mySeekBar.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) cakeController); //
-
+        cakeV.setOnTouchListener(cakeController);
     }
 
 
