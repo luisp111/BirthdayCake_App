@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         SeekBar mySeekBar = (SeekBar) findViewById(R.id.seekBar4); //
         mySeekBar.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) cakeController); //
 
-        cakeV.setOnTouchListener(cakeController);
-
     }
 
 

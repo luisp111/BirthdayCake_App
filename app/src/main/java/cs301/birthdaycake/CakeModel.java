@@ -6,10 +6,6 @@ public class CakeModel {
     public boolean CakeFrosting = true;
     public boolean hasCandle = true;
 
-    public float balloonX = 0;
-
-    public float balloonY = 0;
-
     public void setLit(boolean lit) {
         this.Candlelit = lit;
     }

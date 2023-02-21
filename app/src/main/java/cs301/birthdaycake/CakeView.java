@@ -17,8 +17,6 @@ public class CakeView extends SurfaceView {
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
 
-    Paint drawBalloon = new Paint(); // Paint object for drawBalloon
-
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -30,12 +28,11 @@ public class CakeView extends SurfaceView {
     public static final float layerHeight = 200.0f;
     public static final float frostHeight = 50.0f;
     public static final float candleHeight = 300.0f;
-    public static final float candleWidth = 60.0f;
+    public static final float candleWidth = 40.0f;
     public static final float wickHeight = 30.0f;
     public static final float wickWidth = 6.0f;
     public static final float outerFlameRadius = 30.0f;
     public static final float innerFlameRadius = 15.0f;
-
 
 
     /**
@@ -63,29 +60,13 @@ public class CakeView extends SurfaceView {
         wickPaint.setStyle(Paint.Style.FILL);
         setBackgroundColor(Color.WHITE);  //better than black default
 
-        drawBalloon.setColor(Color.BLUE);
-        drawBalloon.setStyle(Paint.Style.FILL);
-
     }
-
 
     public CakeModel getCakeView() {
         return cake1;
     }
 
     private CakeModel cake1;
-
-    /**
-     * Draws a blue balloon where the user taps the screen
-     */
-    public void drawBalloon(Canvas canvas) {
-        canvas.drawLine(cake1.balloonX + 0, cake1.balloonY + 0, cake1.balloonX + 0, cake1.balloonY + 150, drawBalloon);
-
-        canvas.drawOval(cake1.balloonX - 30, cake1.balloonY -50, cake1.balloonX + 30, cake1.balloonY + 50, drawBalloon);
-
-    }
-
-
 
 
     /**
@@ -156,8 +137,5 @@ public class CakeView extends SurfaceView {
                  drawCandle(canvas, cakeLeft + (cakeWidth / (cake1.candlesOnCake + 1))*i - (candleWidth/i), cakeTop);
 
         }//onDraw
-        drawBalloon(canvas);
-
     }
 }
-
