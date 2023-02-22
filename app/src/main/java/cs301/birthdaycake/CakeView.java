@@ -20,6 +20,7 @@ public class CakeView extends SurfaceView {
     Paint checkersPaintr = new Paint();
     Paint checkersPaintg = new Paint();
 
+    Paint textPaint = new Paint();
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -66,7 +67,9 @@ public class CakeView extends SurfaceView {
         checkersPaintg.setColor(Color.GREEN);
         checkersPaintg.setStyle(Paint.Style.FILL);
         setBackgroundColor(Color.WHITE);  //better than black default
-
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(150);
+        textPaint.setStyle(Paint.Style.FILL);
     }
 
     public CakeModel getCakeView() {
@@ -149,6 +152,15 @@ public class CakeView extends SurfaceView {
                  drawCandle(canvas, cakeLeft + (cakeWidth / (cake1.candlesOnCake + 1))*i - (candleWidth/i), cakeTop);
 
         }//onDraw
+        drawText(cake1.x, cake1.y, canvas);
+
+    }
+
+    public void drawText( float x, float y, Canvas canvas){
+        String xString = Float.toString(x);
+        String yString = Float.toString(y);
+        String finalText = ("("+ xString + "," + yString+")");
+        canvas.drawText(finalText, 1090, 1100, textPaint );
         drawCheckers(canvas);
     }
 }
