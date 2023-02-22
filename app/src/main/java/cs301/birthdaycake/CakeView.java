@@ -17,6 +17,10 @@ public class CakeView extends SurfaceView {
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
 
+    Paint checkersPaintr = new Paint();
+    Paint checkersPaintg = new Paint();
+
+    Paint textPaint = new Paint();
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
         and adapting to different tablets' screen sizes and resolutions.  I've deliberately
@@ -58,8 +62,14 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        checkersPaintr.setColor(Color.RED);
+        checkersPaintr.setStyle(Paint.Style.FILL);
+        checkersPaintg.setColor(Color.GREEN);
+        checkersPaintg.setStyle(Paint.Style.FILL);
         setBackgroundColor(Color.WHITE);  //better than black default
-
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(150);
+        textPaint.setStyle(Paint.Style.FILL);
     }
 
     public CakeModel getCakeView() {
@@ -99,7 +109,12 @@ public class CakeView extends SurfaceView {
         }
 
     }
-
+    public void drawCheckers(Canvas canvas) {
+        canvas.drawRect(cake1.CheckersX-25,cake1.CheckersY-25, cake1.CheckersX, cake1.CheckersY, checkersPaintg);
+        canvas.drawRect(cake1.CheckersX,cake1.CheckersY - 25, cake1.CheckersX+25, cake1.CheckersY, checkersPaintr);
+        canvas.drawRect(cake1.CheckersX-25,cake1.CheckersY, cake1.CheckersX, cake1.CheckersY+25, checkersPaintr);
+        canvas.drawRect(cake1.CheckersX,cake1.CheckersY, cake1.CheckersX+25, cake1.CheckersY+25, checkersPaintg);
+    }
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
@@ -137,5 +152,15 @@ public class CakeView extends SurfaceView {
                  drawCandle(canvas, cakeLeft + (cakeWidth / (cake1.candlesOnCake + 1))*i - (candleWidth/i), cakeTop);
 
         }//onDraw
+        drawText(cake1.CheckersX, cake1.CheckersY, canvas);
+
+    }
+
+    public void drawText( float x, float y, Canvas canvas){
+        String xString = Float.toString(x);
+        String yString = Float.toString(y);
+        String finalText = ("("+ xString + "," + yString+")");
+        canvas.drawText(finalText, 1090, 1100, textPaint );
+        drawCheckers(canvas);
     }
 }
