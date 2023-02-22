@@ -52,8 +52,10 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
     public boolean onTouch(View view, MotionEvent motionEvent) {
 
         newCakeModel.CheckersX = motionEvent.getX();
-
         newCakeModel.CheckersY = motionEvent.getY();
+
+        newCakeModel.balloonX = motionEvent.getX(); // Balloon
+        newCakeModel.balloonY = motionEvent.getY(); // Balloon
         newCakeView.invalidate();
         return true;
     }

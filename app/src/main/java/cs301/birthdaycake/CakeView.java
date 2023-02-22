@@ -20,6 +20,8 @@ public class CakeView extends SurfaceView {
     Paint checkersPaintr = new Paint();
     Paint checkersPaintg = new Paint();
 
+    Paint drawBalloon = new Paint(); // Creating new object for drawBalloon
+
     Paint textPaint = new Paint();
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -70,6 +72,7 @@ public class CakeView extends SurfaceView {
         textPaint.setColor(Color.RED);
         textPaint.setTextSize(150);
         textPaint.setStyle(Paint.Style.FILL);
+        drawBalloon.setColor(Color.BLUE);
     }
 
     public CakeModel getCakeView() {
@@ -109,12 +112,22 @@ public class CakeView extends SurfaceView {
         }
 
     }
+
+    public void drawBalloon(Canvas canvas)  {
+        canvas.drawOval(cake1.balloonX - 25, cake1.balloonY + 50, cake1.balloonX + 25, cake1.balloonY - 50, drawBalloon);
+        canvas.drawLine(cake1.balloonX + 0, cake1.balloonY + 0, cake1.balloonX + 0, cake1.balloonY + 100, drawBalloon);
+    }
+
+
     public void drawCheckers(Canvas canvas) {
         canvas.drawRect(cake1.CheckersX-25,cake1.CheckersY-25, cake1.CheckersX, cake1.CheckersY, checkersPaintg);
         canvas.drawRect(cake1.CheckersX,cake1.CheckersY - 25, cake1.CheckersX+25, cake1.CheckersY, checkersPaintr);
         canvas.drawRect(cake1.CheckersX-25,cake1.CheckersY, cake1.CheckersX, cake1.CheckersY+25, checkersPaintr);
         canvas.drawRect(cake1.CheckersX,cake1.CheckersY, cake1.CheckersX+25, cake1.CheckersY+25, checkersPaintg);
     }
+
+
+
     /**
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
@@ -161,6 +174,7 @@ public class CakeView extends SurfaceView {
         String yString = Float.toString(y);
         String finalText = ("("+ xString + "," + yString+")");
         canvas.drawText(finalText, 1090, 1100, textPaint );
+        drawBalloon(canvas);
         drawCheckers(canvas);
     }
 }

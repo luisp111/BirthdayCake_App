@@ -8,6 +8,12 @@ public class CakeModel {
     public float CheckersX = 0;
     public float CheckersY = 0;
 
+    public float balloonX = 0;
+
+    public float balloonY = 0;
+
+
+
 
     public void setLit(boolean lit) {
         this.Candlelit = lit;
