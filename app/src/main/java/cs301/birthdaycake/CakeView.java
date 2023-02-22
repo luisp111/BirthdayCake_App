@@ -152,7 +152,7 @@ public class CakeView extends SurfaceView {
                  drawCandle(canvas, cakeLeft + (cakeWidth / (cake1.candlesOnCake + 1))*i - (candleWidth/i), cakeTop);
 
         }//onDraw
-        drawText(cake1.x, cake1.y, canvas);
+        drawText(cake1.CheckersX, cake1.CheckersY, canvas);
 
     }
 
